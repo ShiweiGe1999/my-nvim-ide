@@ -26,7 +26,7 @@ local function is_vscode()
 end
 
 -- Default color scheme
-local default_color_scheme = "kanagawa"
+local default_color_scheme = "tokyonight"
 
 local night_themes = {
   "catppuccin-mocha",

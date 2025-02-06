@@ -149,6 +149,7 @@ return {
       { "<esc>", "<cmd>close<cr>", ft = "fzf", mode = "t", nowait = true },
       { "<c-j>", "<Down>", ft = "fzf", mode = "t", nowait = true },
       { "<c-k>", "<Up>", ft = "fzf", mode = "t", nowait = true },
+      { "<c-n>", "<c-\\><c-n>", ft = "fzf", mode = "t", nowait = true },
       -- Find file by grep
       {
         "<C-g>",

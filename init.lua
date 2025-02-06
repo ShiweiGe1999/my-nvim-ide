@@ -25,6 +25,9 @@ end
 -- for detecting the LSP root
 vim.g.root_lsp_ignore = { "copilot" }
 
+-- vim.g.typescript_lsp = "ts_ls"
+vim.g.lsp_eslint_enable = "yes"
+vim.g.disable_autoformat = true
 -- Load project setting if available, e.g: .nvim-config.lua
 -- This file is not tracked by git
 -- It can be used to set project specific settings
@@ -41,7 +44,7 @@ end
 local enable_extra_plugins = vim.g.enable_plugins
   or {
     -- Below are the good extra plugins, but they are disabled by default
-    codecompanion = "no",
+    codecompanion = "yes",
     avante = "no",
     ["no-neck-pain"] = "no",
     harpoon = "no",
@@ -50,13 +53,13 @@ local enable_extra_plugins = vim.g.enable_plugins
     snacks = "yes",
     lspsaga = "yes",
     ["fold-preview"] = "yes",
-    wakatime = "yes",
+    wakatime = "no",
   }
 
 local enable_extra_langs = vim.g.enable_langs or {
-  go = "yes",
+  go = "no",
   rust = "yes",
-  python = "no",
+  python = "yes",
   ruby = "no",
 }
 

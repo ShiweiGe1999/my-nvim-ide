@@ -3,7 +3,10 @@ return {
   {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
-    version = false,
+    commit = "b356f2c",
+    -- enabled = false,
+    pin = true,
+    -- version = false,
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
       {
@@ -49,9 +52,9 @@ return {
         completion = { completeopt = "menu,menuone,noinsert" },
         mapping = cmp.mapping.preset.insert({
           -- Select the [n]ext item
-          ["<C-n>"] = cmp.mapping.select_next_item(),
+          ["<Tab>"] = cmp.mapping.select_next_item(),
           -- Select the [p]revious item
-          ["<C-p>"] = cmp.mapping.select_prev_item(),
+          ["<S-Tab>"] = cmp.mapping.select_prev_item(),
 
           -- Scroll the documentation window [b]ack / [f]orward
           ["<C-b>"] = cmp.mapping.scroll_docs(-4),
@@ -88,42 +91,42 @@ return {
     end,
   },
   -- Copilot
-  {
-    "github/copilot.vim",
-    event = "VeryLazy",
-    config = function()
-      -- For copilot.vim
-      -- enable copilot for specific filetypes
-      vim.g.copilot_filetypes = {
-        ["TelescopePrompt"] = false,
-        ["grug-far"] = false,
-        ["grug-far-history"] = false,
-        ["copilot-chat"] = false,
-      }
-
-      -- Set to true to assume that copilot is already mapped
-      vim.g.copilot_assume_mapped = true
-      -- Set workspace folders
-      vim.g.copilot_workspace_folders = "~/Projects"
-
-      -- Setup keymaps
-      local keymap = vim.keymap.set
-      local opts = { silent = true }
-
-      -- Set <C-y> to accept copilot suggestion
-      keymap("i", "<C-y>", 'copilot#Accept("\\<CR>")', { expr = true, replace_keycodes = false })
-
-      -- Set <C-i> to accept line
-      keymap("i", "<C-i>", "<Plug>(copilot-accept-line)", opts)
-
-      -- Set <C-j> to next suggestion, <C-k> to previous suggestion
-      keymap("i", "<C-j>", "<Plug>(copilot-next)", opts)
-      keymap("i", "<C-k>", "<Plug>(copilot-previous)", opts)
-
-      -- Set <C-d> to dismiss suggestion
-      keymap("i", "<C-d>", "<Plug>(copilot-dismiss)", opts)
-    end,
-  },
+  -- {
+  --   "github/copilot.vim",
+  --   event = "VeryLazy",
+  --   config = function()
+  --     -- For copilot.vim
+  --     -- enable copilot for specific filetypes
+  --     vim.g.copilot_filetypes = {
+  --       ["TelescopePrompt"] = false,
+  --       ["grug-far"] = false,
+  --       ["grug-far-history"] = false,
+  --       ["copilot-chat"] = false,
+  --     }
+  --
+  --     -- Set to true to assume that copilot is already mapped
+  --     vim.g.copilot_assume_mapped = true
+  --     -- Set workspace folders
+  --     vim.g.copilot_workspace_folders = "~/Projects"
+  --
+  --     -- Setup keymaps
+  --     local keymap = vim.keymap.set
+  --     local opts = { silent = true }
+  --
+  --     -- Set <C-y> to accept copilot suggestion
+  --     keymap("i", "<C-y>", 'copilot#Accept("\\<CR>")', { expr = true, replace_keycodes = false })
+  --
+  --     -- Set <C-i> to accept line
+  --     keymap("i", "<C-i>", "<Plug>(copilot-accept-line)", opts)
+  --
+  --     -- Set <C-j> to next suggestion, <C-k> to previous suggestion
+  --     keymap("i", "<C-j>", "<Plug>(copilot-next)", opts)
+  --     keymap("i", "<C-k>", "<Plug>(copilot-previous)", opts)
+  --
+  --     -- Set <C-d> to dismiss suggestion
+  --     keymap("i", "<C-d>", "<Plug>(copilot-dismiss)", opts)
+  --   end,
+  -- },
   -- Install LSP servers
   {
     "williamboman/mason.nvim",
@@ -164,7 +167,7 @@ return {
     "ThePrimeagen/refactoring.nvim",
     vscode = true,
     dependencies = {
-      { "nvim-lua/plenary.nvim", vscode = true },
+      { "nvim-lua/plenary.nvim",          vscode = true },
       { "nvim-treesitter/nvim-treesitter" },
     },
     keys = {

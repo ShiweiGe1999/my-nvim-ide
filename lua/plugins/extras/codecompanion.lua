@@ -85,11 +85,11 @@ Identify any issues related to:
 Your feedback must be concise, directly addressing each identified issue with:
 - A clear description of the problem.
 - A concrete suggestion for how to improve or correct the issue.
-  
+
 Format your feedback as follows:
 - Explain the high-level issue or problem briefly.
 - Provide a specific suggestion for improvement.
- 
+
 If the code snippet has no readability issues, simply confirm that the code is clear and well-written as is.
 ]]
 )
@@ -134,29 +134,59 @@ return {
       "jellydn/spinner.nvim", -- Show loading spinner when request is started
     },
     opts = {
+      adapters = {
+        deepseek = function()
+          return require("codecompanion.adapters").extend("ollama", {
+            name = "deepseek", -- Custom adapter name
+            schema = {
+              model = {
+                default = "deepseek-r1:7b", -- Specify the DeepSeek R1:7b model
+              },
+              num_ctx = {
+                default = 8192,
+              },
+              temperature = {
+                default = 0.3
+              }
+            },
+          })
+        end,
+        llama = function()
+          return require("codecompanion.adapters").extend("ollama", {
+            name = "llama3.2:latest", -- Custom adapter name
+            schema = {
+              model = {
+                default = "llama3.2:latest", -- Specify the DeepSeek R1:7b model
+              },
+              num_ctx = {
+                default = 8192,
+              },
+            },
+          })
+        end,
+      },
       strategies = {
         chat = {
-          adapter = "copilot",
-          roles = { llm = "  Copilot Chat", user = "IT Man" },
-          slash_commands = {
-            ["buffer"] = {
-              callback = "helpers.slash_commands.buffer",
-              description = "Insert open buffers",
-              opts = {
-                contains_code = true,
-                provider = "fzf_lua", -- default|telescope|mini_pick|fzf_lua
-              },
-            },
-            ["file"] = {
-              callback = "helpers.slash_commands.file",
-              description = "Insert a file",
-              opts = {
-                contains_code = true,
-                max_lines = 1000,
-                provider = "fzf_lua", -- telescope|mini_pick|fzf_lua
-              },
-            },
-          },
+          adapter = "deepseek",
+          -- slash_commands = {
+          --   ["buffer"] = {
+          --     callback = "helpers.slash_commands.buffer",
+          --     description = "insert open buffers",
+          --     opts = {
+          --       contains_code = true,
+          --       provider = "fzf_lua", -- default|telescope|mini_pick|fzf_lua
+          --     },
+          --   },
+          --   ["file"] = {
+          --     callback = "helpers.slash_commands.file",
+          --     description = "insert a file",
+          --     opts = {
+          --       contains_code = true,
+          --       max_lines = 1000,
+          --       provider = "fzf_lua", -- telescope|mini_pick|fzf_lua
+          --     },
+          --   },
+          -- },
           keymaps = {
             send = {
               modes = {
@@ -185,8 +215,8 @@ return {
             },
           },
         },
-        inline = { adapter = "copilot" },
-        agent = { adapter = "copilot" },
+        inline = { adapter = "deepseek" },
+        agent = { adapter = "deepseek" },
       },
       inline = {
         layout = "buffer", -- vertical|horizontal|buffer

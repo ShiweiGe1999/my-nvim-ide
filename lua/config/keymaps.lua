@@ -160,7 +160,7 @@ end, {
 })
 
 -- Define a global variable to enable/disable autoformat
-local auto_format = true
+local auto_format = false
 map("n", "<leader>uf", function()
   auto_format = not auto_format
   if auto_format then

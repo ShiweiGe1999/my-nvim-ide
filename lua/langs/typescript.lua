@@ -28,8 +28,8 @@ return {
     opts = {
       servers = {
         ts_ls = {
-          root_dir = require("lspconfig").util.root_pattern("package.json", "tsconfig.json"),
-          single_file_support = false,
+          -- root_dir = require("lspconfig").util.root_pattern("package.json", "tsconfig.json"),
+          -- single_file_support = false,
           handlers = {
             -- format error code with better error message
             ["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
@@ -201,7 +201,7 @@ return {
       -- Be aware that you also will need to properly configure your LSP server to
       -- provide the inlay hints.
       inlay_hints = {
-        enabled = true,
+        enabled = false,
       },
       -- Enable this to enable the builtin LSP code lenses on Neovim >= 0.10.0
       -- Be aware that you also will need to properly configure your LSP server to
